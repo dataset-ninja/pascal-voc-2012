@@ -1,4 +1,7 @@
 {
+    "table_options": {
+        "fixColumns": 1
+    },
     "columns": [
         "name",
         "neutral",
