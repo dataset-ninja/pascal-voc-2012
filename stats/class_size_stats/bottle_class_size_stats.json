@@ -1,0 +1,48 @@
+{
+    "columns": [
+        "Class name",
+        "Object count",
+        "Min height (px)",
+        "Min height (%)",
+        "Max height (px)",
+        "Max height (%)",
+        "Avg height (px)",
+        "Avg height (%)",
+        "Min width (px)",
+        "Min width (%)",
+        "Max width (px)",
+        "Max width (%)",
+        "Avg width (px)",
+        "Avg width (%)",
+        "Min area (px)",
+        "Min area (%)",
+        "Max area (px)",
+        "Max area (%)",
+        "Avg area (px)",
+        "Avg area (%)"
+    ],
+    "data": [
+        [
+            "bottle",
+            714,
+            9,
+            2.41,
+            500,
+            100.0,
+            133.2,
+            32.07,
+            3,
+            0.6,
+            500,
+            100.0,
+            58.62,
+            13.52,
+            42.0,
+            0.03,
+            153139.0,
+            71.29,
+            9632.95,
+            5.41
+        ]
+    ]
+}

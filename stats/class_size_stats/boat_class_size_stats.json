@@ -1,0 +1,48 @@
+{
+    "columns": [
+        "Class name",
+        "Object count",
+        "Min height (px)",
+        "Min height (%)",
+        "Max height (px)",
+        "Max height (%)",
+        "Avg height (px)",
+        "Avg height (%)",
+        "Min width (px)",
+        "Min width (%)",
+        "Max width (px)",
+        "Max width (%)",
+        "Avg width (px)",
+        "Avg width (%)",
+        "Min area (px)",
+        "Min area (%)",
+        "Max area (px)",
+        "Max area (%)",
+        "Avg area (px)",
+        "Avg area (%)"
+    ],
+    "data": [
+        [
+            "boat",
+            464,
+            1,
+            0.3,
+            428,
+            100.0,
+            122.81,
+            32.76,
+            6,
+            1.2,
+            500,
+            100.0,
+            178.0,
+            37.28,
+            8.0,
+            0.0,
+            71960.0,
+            43.22,
+            12340.14,
+            6.96
+        ]
+    ]
+}

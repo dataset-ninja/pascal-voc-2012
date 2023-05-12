@@ -1,0 +1,48 @@
+{
+    "columns": [
+        "Class name",
+        "Object count",
+        "Min height (px)",
+        "Min height (%)",
+        "Max height (px)",
+        "Max height (%)",
+        "Avg height (px)",
+        "Avg height (%)",
+        "Min width (px)",
+        "Min width (%)",
+        "Max width (px)",
+        "Max width (%)",
+        "Avg width (px)",
+        "Avg width (%)",
+        "Min area (px)",
+        "Min area (%)",
+        "Max area (px)",
+        "Max area (%)",
+        "Avg area (px)",
+        "Avg area (%)"
+    ],
+    "data": [
+        [
+            "bird",
+            554,
+            4,
+            1.07,
+            472,
+            99.47,
+            167.98,
+            43.15,
+            5,
+            1.0,
+            500,
+            100.0,
+            162.23,
+            34.59,
+            22.0,
+            0.02,
+            118466.0,
+            68.19,
+            15827.19,
+            8.64
+        ]
+    ]
+}
