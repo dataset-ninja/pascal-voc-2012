@@ -1,0 +1,48 @@
+{
+    "columns": [
+        "Class name",
+        "Object count",
+        "Min height (px)",
+        "Min height (%)",
+        "Max height (px)",
+        "Max height (%)",
+        "Avg height (px)",
+        "Avg height (%)",
+        "Min width (px)",
+        "Min width (%)",
+        "Max width (px)",
+        "Max width (%)",
+        "Avg width (px)",
+        "Avg width (%)",
+        "Min area (px)",
+        "Min area (%)",
+        "Max area (px)",
+        "Max area (%)",
+        "Avg area (px)",
+        "Avg area (%)"
+    ],
+    "data": [
+        [
+            "cow",
+            568,
+            6,
+            1.91,
+            498,
+            100.0,
+            146.8,
+            39.73,
+            10,
+            2.0,
+            500,
+            100.0,
+            161.37,
+            33.72,
+            63.0,
+            0.04,
+            126434.0,
+            60.38,
+            17703.41,
+            9.96
+        ]
+    ]
+}

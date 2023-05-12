@@ -1,0 +1,48 @@
+{
+    "columns": [
+        "Class name",
+        "Object count",
+        "Min height (px)",
+        "Min height (%)",
+        "Max height (px)",
+        "Max height (%)",
+        "Avg height (px)",
+        "Avg height (%)",
+        "Min width (px)",
+        "Min width (%)",
+        "Max width (px)",
+        "Max width (%)",
+        "Avg width (px)",
+        "Avg width (%)",
+        "Min area (px)",
+        "Min area (%)",
+        "Max area (px)",
+        "Max area (%)",
+        "Avg area (px)",
+        "Avg area (%)"
+    ],
+    "data": [
+        [
+            "neutral",
+            5826,
+            19,
+            4.4,
+            500,
+            100.0,
+            260.39,
+            67.49,
+            21,
+            4.2,
+            500,
+            100.0,
+            348.0,
+            73.84,
+            324.0,
+            0.17,
+            171766.0,
+            91.61,
+            9807.21,
+            5.5
+        ]
+    ]
+}
