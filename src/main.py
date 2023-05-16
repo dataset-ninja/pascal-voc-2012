@@ -37,7 +37,7 @@ def main():
     )
 
     for name, stat in zip(names, stats):
-        with open(f"./stats_/{name}.json", "w") as f:
+        with open(f"./stats/{name}.json", "w") as f:
             json.dump(stat.to_json(), f)
 
 
