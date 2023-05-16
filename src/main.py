@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 import dataset_tools as dtools
 import supervisely as sly
 
+
 if sly.is_development():
     load_dotenv(os.path.expanduser("~/ninja.env"))
     load_dotenv("local.env")
@@ -14,14 +15,6 @@ project_meta = sly.ProjectMeta.from_json(api.project.get_meta(project_id))
 
 
 def main():
-    names = [
-        "class_per_image",
-        "class_balance",
-        "class_cooccurrence",
-        "objects_distribution",
-        "object_sizes",
-        "class_sizes",
-    ]
     stats = [
         dtools.ClassesPerImage(project_meta),
         dtools.ClassBalance(project_meta),
@@ -33,12 +26,12 @@ def main():
     dtools.count_stats(
         project_id,
         stats=stats,
-        sample_rate=1,
+        sample_rate=0.01,
     )
-
-    for name, stat in zip(names, stats):
-        with open(f"./stats/{name}.json", "w") as f:
+    for stat in stats:
+        with open(f"./stats/{stat.json_name}.json", "w") as f:
             json.dump(stat.to_json(), f)
+        stat.to_image(f"./stats/{stat.json_name}.png")
 
 
 if __name__ == "__main__":

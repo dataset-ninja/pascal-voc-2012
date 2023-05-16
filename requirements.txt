@@ -1,2 +1,3 @@
-supervisely
-dataset-tools
+supervisely==6.72.11
+# dataset-tools
+/home/grokhi/supervisely/sdk/dataset-tools
