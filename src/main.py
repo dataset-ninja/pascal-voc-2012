@@ -26,7 +26,7 @@ def main():
     dtools.count_stats(
         project_id,
         stats=stats,
-        sample_rate=0.01,
+        sample_rate=1,
     )
     for stat in stats:
         with open(f"./stats/{stat.json_name}.json", "w") as f:
