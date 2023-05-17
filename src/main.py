@@ -18,9 +18,9 @@ project_id = sly.env.project_id()
 project_meta = sly.ProjectMeta.from_json(api.project.get_meta(project_id))
 
 # 2. localdir way
-project_path = os.environ["LOCAL_DATA_DIR"]
+# project_path = os.environ["LOCAL_DATA_DIR"]
 # sly.download(api, project_id, project_path, save_image_info=True, save_images=False)
-project_meta = sly.Project(project_path, sly.OpenMode.READ).meta
+# project_meta = sly.Project(project_path, sly.OpenMode.READ).meta
 
 
 def main():
@@ -37,6 +37,7 @@ def main():
         stats=stats,
         sample_rate=1,
     )
+    print("Saving stats...")
     for stat in stats:
         with open(f"./stats/{stat.json_name}.json", "w") as f:
             json.dump(stat.to_json(), f)
