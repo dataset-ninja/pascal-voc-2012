@@ -37,7 +37,7 @@ def main():
     dtools.count_stats(
         project_id,
         stats=stats,
-        sample_rate=1,
+        sample_rate=0.001,
     )
 
     print("Saving stats...")
