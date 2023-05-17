@@ -1,17 +1,26 @@
-import os, json
+import json
+import os
+
 from dotenv import load_dotenv
 
-import dataset_tools as dtools
 import supervisely as sly
-
+import dataset_tools as dtools
 
 if sly.is_development():
     load_dotenv(os.path.expanduser("~/ninja.env"))
     load_dotenv("local.env")
 
+os.makedirs("./stats/", exist_ok=True)
 api = sly.Api.from_env()
+
+# 1. api way
 project_id = sly.env.project_id()
 project_meta = sly.ProjectMeta.from_json(api.project.get_meta(project_id))
+
+# 2. localdir way
+project_path = os.environ["LOCAL_DATA_DIR"]
+# sly.download(api, project_id, project_path, save_image_info=True, save_images=False)
+project_meta = sly.Project(project_path, sly.OpenMode.READ).meta
 
 
 def main():
