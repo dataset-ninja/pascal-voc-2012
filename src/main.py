@@ -25,12 +25,12 @@ project_meta = sly.ProjectMeta.from_json(api.project.get_meta(project_id))
 
 def main():
     stats = [
-        dtools.ClassBalance(project_meta),
-        dtools.ClassesPerImage(project_meta),
+        # dtools.ClassBalance(project_meta),
+        # dtools.ClassesPerImage(project_meta),
         dtools.ClassCooccurrence(project_meta),
-        dtools.ObjectsDistribution(project_meta),
-        dtools.ObjectSizes(project_meta),
-        dtools.ClassSizes(project_meta),
+        # dtools.ObjectsDistribution(project_meta),
+        # dtools.ObjectSizes(project_meta),
+        # dtools.ClassSizes(project_meta),
     ]
     dtools.count_stats(
         project_id,
