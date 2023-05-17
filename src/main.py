@@ -37,6 +37,7 @@ def main():
         stats=stats,
         sample_rate=1,
     )
+    print("Saving stats...")
     for stat in stats:
         with open(f"./stats/{stat.json_name}.json", "w") as f:
             json.dump(stat.to_json(), f)
