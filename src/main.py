@@ -29,7 +29,7 @@ def main():
     stats = [
         # dtools.ClassBalance(project_meta),
         # dtools.ClassCooccurrence(project_meta),
-        dtools.ClassesPerImage(project_meta, datasets),
+        dtools.ClassesPerImage(project_meta, datasets),  # @TODO: fix swap objects vs area
         # dtools.ObjectsDistribution(project_meta),
         # dtools.ObjectSizes(project_meta),
         # dtools.ClassSizes(project_meta),
