@@ -29,7 +29,7 @@ def main():
     stats = [
         # dtools.ClassBalance(project_meta),
         # dtools.ClassCooccurrence(project_meta),
-        dtools.ClassesPerImage(project_meta, datasets),  # @TODO: fix swap objects vs area
+        dtools.ClassesPerImage(project_meta, datasets),
         # dtools.ObjectsDistribution(project_meta),
         # dtools.ObjectSizes(project_meta),
         # dtools.ClassSizes(project_meta),
@@ -37,7 +37,7 @@ def main():
     dtools.count_stats(
         project_id,
         stats=stats,
-        sample_rate=0.001,
+        sample_rate=1,
     )
 
     print("Saving stats...")
