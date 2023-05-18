@@ -26,7 +26,7 @@ datasets = api.dataset.get_list(project_id)
 # datasets = None
 
 
-def main():
+def build_stats():
     stats = [
         dtools.ClassBalance(project_meta),
         dtools.ClassCooccurrence(project_meta),
@@ -50,12 +50,14 @@ def main():
     for vis in vstats:
         vis.to_image(f"./stats/{vis.basename_stem}.png", draw_style="outside_black")
 
-    print("Done")
+    print("Stats done")
 
+
+def build_visualizations():
     renderers = [
         dtools.Poster(project_id, project_meta),
         dtools.SideAnnotationsGrid(project_id, project_meta),
-        dtools.HorizontalGrid(project_id, project_meta),
+        dtools.HorizontalGrid(project_id, project_meta, cols=4),
     ]
     dtools.prepare_renders(
         project_id,
@@ -65,7 +67,12 @@ def main():
     print("Saving render results...")
     for renderer in renderers:
         renderer.to_image(f"./renders/{renderer.render_name}.png")
-    print("Done")
+    print("Visualizations done")
+
+
+def main():
+    # build_stats()
+    build_visualizations()
 
 
 # @TODO: dataset-ninja/pascal-voc-2012 github repo in custom data
