@@ -27,12 +27,12 @@ datasets = api.dataset.get_list(project_id)
 
 def main():
     stats = [
-        # dtools.ClassBalance(project_meta),
-        # dtools.ClassCooccurrence(project_meta),
+        dtools.ClassBalance(project_meta),
+        dtools.ClassCooccurrence(project_meta),
         dtools.ClassesPerImage(project_meta, datasets),
-        # dtools.ObjectsDistribution(project_meta),
-        # dtools.ObjectSizes(project_meta),
-        # dtools.ClassSizes(project_meta),
+        dtools.ObjectsDistribution(project_meta),
+        dtools.ObjectSizes(project_meta),
+        dtools.ClassSizes(project_meta),
     ]
     dtools.count_stats(
         project_id,
@@ -42,9 +42,9 @@ def main():
 
     print("Saving stats...")
     for stat in stats:
-        with open(f"./stats/{stat.json_name}.json", "w") as f:
+        with open(f"./stats/{stat.basename_stem}.json", "w") as f:
             json.dump(stat.to_json(), f)
-        stat.to_image(f"./stats/{stat.json_name}.png")
+        stat.to_image(f"./stats/{stat.basename_stem}.png")
     print("Done")
 
 
