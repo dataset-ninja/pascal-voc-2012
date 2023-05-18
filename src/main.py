@@ -11,7 +11,7 @@ if sly.is_development():
     load_dotenv("local.env")
 
 os.makedirs("./stats/", exist_ok=True)
-os.makedirs("./render_results/", exist_ok=True)
+os.makedirs("./renders/", exist_ok=True)
 api = sly.Api.from_env()
 
 # 1. api way
@@ -53,7 +53,7 @@ def main():
     print("Done")
 
     renderers = [
-        # dtools.Poster(project_id, project_meta),
+        dtools.Poster(project_id, project_meta),
         dtools.SideAnnotationsGrid(project_id, project_meta),
         dtools.HorizontalGrid(project_id, project_meta),
     ]
@@ -64,7 +64,7 @@ def main():
     )
     print("Saving render results...")
     for renderer in renderers:
-        renderer.to_image(f"./render_results/{renderer.render_name}.png")
+        renderer.to_image(f"./renders/{renderer.render_name}.png")
     print("Done")
 
 
