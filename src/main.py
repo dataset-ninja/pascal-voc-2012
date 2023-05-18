@@ -11,6 +11,7 @@ if sly.is_development():
     load_dotenv("local.env")
 
 os.makedirs("./stats/", exist_ok=True)
+os.makedirs("./renders/", exist_ok=True)
 api = sly.Api.from_env()
 
 # 1. api way
@@ -34,6 +35,7 @@ def main():
         dtools.ObjectSizes(project_meta),
         dtools.ClassSizes(project_meta),
     ]
+    vstats = [dtools.ClassesHeatmaps(project_meta)]
     dtools.count_stats(
         project_id,
         stats=stats,
@@ -45,6 +47,24 @@ def main():
         with open(f"./stats/{stat.basename_stem}.json", "w") as f:
             json.dump(stat.to_json(), f)
         stat.to_image(f"./stats/{stat.basename_stem}.png")
+    for vis in vstats:
+        vis.to_image(f"./stats/{vis.basename_stem}.png", draw_style="outside_black")
+
+    print("Done")
+
+    renderers = [
+        dtools.Poster(project_id, project_meta),
+        dtools.SideAnnotationsGrid(project_id, project_meta),
+        dtools.HorizontalGrid(project_id, project_meta),
+    ]
+    dtools.prepare_renders(
+        project_id,
+        renderers=renderers,
+        sample_cnt=40,
+    )
+    print("Saving render results...")
+    for renderer in renderers:
+        renderer.to_image(f"./renders/{renderer.render_name}.png")
     print("Done")
 
 
