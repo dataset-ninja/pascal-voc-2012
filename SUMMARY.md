@@ -1,6 +1,6 @@
 CPPE - 5 (Medical Personal Protective Equipment) is a new challenging dataset with the goal to allow the study of subordinate categorization of medical personal protective equipments, which is not possible with other popular data sets that focus on broad level categories.
 
-![Cooking at 3am](gordon-ramsay.jpg)
+![Cooking at 3am](https://raw.githubusercontent.com/dataset-ninja/pascal-voc-2012/main/gordon-ramsay.jpg)
 
 Some features of this dataset are:
 
