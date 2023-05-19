@@ -2,6 +2,8 @@ CPPE - 5 (Medical Personal Protective Equipment) is a new challenging dataset wi
 
 Some features of this dataset are:
 
-— high quality images and annotations (~4.6 bounding boxes per image)
-— real-life images unlike any current such dataset
-— majority of non-iconic images (allowing easy deployment to real-world environments)
+1. high quality images and annotations (~4.6 bounding boxes per image)
+1. real-life images unlike any current such dataset
+1. majority of non-iconic images (allowing easy deployment to real-world environments)
+
+*[CPPE]: Medical Personal Protective Equipment
