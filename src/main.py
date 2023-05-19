@@ -71,8 +71,9 @@ def build_visualizations():
 
 
 def main():
+    pass
     # build_stats()
-    build_visualizations()
+    # build_visualizations()
 
 
 # @TODO: dataset-ninja/pascal-voc-2012 github repo in custom data
