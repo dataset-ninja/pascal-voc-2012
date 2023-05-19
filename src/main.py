@@ -11,7 +11,7 @@ if sly.is_development():
     load_dotenv("local.env")
 
 os.makedirs("./stats/", exist_ok=True)
-os.makedirs("./renders/", exist_ok=True)
+os.makedirs("./visualizations/", exist_ok=True)
 api = sly.Api.from_env()
 
 # 1. api way
@@ -54,19 +54,25 @@ def build_stats():
 
 
 def build_visualizations():
+    renderes_with_animations = [
+        dtools.HorizontalGrid(project_id, project_meta),
+        dtools.VerticalGrid(project_id, project_meta),
+    ]
     renderers = [
         dtools.Poster(project_id, project_meta),
         dtools.SideAnnotationsGrid(project_id, project_meta),
-        dtools.HorizontalGrid(project_id, project_meta, cols=4),
+        *renderes_with_animations
     ]
     dtools.prepare_renders(
         project_id,
         renderers=renderers,
         sample_cnt=40,
     )
-    print("Saving render results...")
+    print("Saving visualization results...")
     for renderer in renderers:
-        renderer.to_image(f"./renders/{renderer.render_name}.png")
+        renderer.to_image(f"./visualizations/{renderer.basename_stem}.png")
+    for renderer in renderes_with_animations:
+        renderer.to_gif(f"./visualizations/{renderer.basename_stem}.gif")
     print("Visualizations done")
 
 
