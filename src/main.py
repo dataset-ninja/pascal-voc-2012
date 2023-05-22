@@ -54,25 +54,24 @@ def build_stats():
 
 
 def build_visualizations():
-    renderes_with_animations = [
-        dtools.HorizontalGrid(project_id, project_meta),
-        dtools.VerticalGrid(project_id, project_meta),
-    ]
     renderers = [
         dtools.Poster(project_id, project_meta),
         dtools.SideAnnotationsGrid(project_id, project_meta),
-        *renderes_with_animations
+    ]
+    animators = [
+        dtools.HorizontalGrid(project_id, project_meta),
+        dtools.VerticalGrid(project_id, project_meta),
     ]
     dtools.prepare_renders(
         project_id,
-        renderers=renderers,
+        renderers=renderers+animators,
         sample_cnt=40,
     )
     print("Saving visualization results...")
-    for renderer in renderers:
-        renderer.to_image(f"./visualizations/{renderer.basename_stem}.png")
-    for renderer in renderes_with_animations:
-        renderer.to_gif(f"./visualizations/{renderer.basename_stem}.gif")
+    for r in renderers + animators:
+        r.to_image(f"./visualizations/{r.basename_stem}.png")
+    for a in animators:
+        a.animate(f"./visualizations/{a.basename_stem}.webp")
     print("Visualizations done")
 
 
