@@ -10,15 +10,29 @@ import pandas as pd
 
 import inflect
 
+if sly.is_development():
+    load_dotenv(os.path.expanduser("~/ninja.env"))
+    load_dotenv("local.env")
+
+api = sly.Api.from_env()
 p = inflect.engine()
 
+def get_expert_commentary():
+    content = "This is a very good dataset. I enjoy it every day in my life.\n\n"
+    
+    content += """
+![Cooking at 3am](https://raw.githubusercontent.com/dataset-ninja/pascal-voc-2012/main/gordon-ramsay.jpg?v=1)
 
-def generate_meta_from_sly():
-    if sly.is_development():
-        load_dotenv(os.path.expanduser("~/ninja.env"))
-        load_dotenv("local.env")
+Some features of this dataset are:
 
-    api = sly.Api.from_env()
+1. high quality images and annotations (~4.6 bounding boxes per image)
+1. real-life images unlike any current such dataset
+1. majority of non-iconic images (allowing easy deployment to real-world environments)
+    """
+    
+    return content
+
+def generate_meta_from_sly(name:str, fullname:str, cv_tasks:list, release_year:str, organization:str, organization_link:str, industry:str=None):
 
     project_id = sly.env.project_id()
     # project_meta = sly.ProjectMeta.from_json(api.project.get_meta(project_id))
@@ -42,72 +56,24 @@ def generate_meta_from_sly():
     splits_list = [{'name': item['name'], 'split_size': item['imagesCount']} for item in stats['datasets']['items']]
 
 
-    return {
-        "name": project_info.name,
-        "fullname": "PASCAL Visual Object Classes Challenge",
-        "cv_tasks": ["semantic-segmentation"],
+    fields = {
+        "name": name,
+        "fullname": fullname,
+        "cv_tasks": cv_tasks,
         "modality": project_info.type,
-        "release_year": "2012",
-        "organization": "Dong et al",
-        "organization_link": "https://arxiv.org/pdf/2012.07131v2.pdf",
+        "release_year": release_year,
+        "organization": organization,
+        "organization_link": organization_link,
         "totals": totals_dct,
         "unlabeled_assets_num": unlabeled_num,
         "unlabeled_assets_percent": unlabeled_percent,
         "splits": splits_list
     }
 
+    if industry is not None:
+        fields['industry'] = industry
 
-
-
-def generate_meta_from_local():
-
-    modality ="images"
-
-    with open("./stats/class_balance.json") as f:
-        json_data = json.load(f)
-    df = pd.DataFrame(data=json_data["data"], columns=json_data["columns"])
-
-    with open("./stats/classes_per_image.json") as f:
-        json_data = json.load(f)
-    df_img = pd.DataFrame(data=json_data["data"], columns=json_data["columns"])
-
-
-    totals_dct = {
-       "total_modality_files": df_img.shape[0],
-       "total_objects": df["Objects"].sum(),
-       "total_classes": df["Class"].count(),
-       "top_classes": df.sort_values('Objects', ascending=False)['Class'].tolist()
-    }
-
-    unlabeled_num = df_img.shape[0] - sum(df_img.drop(columns=["Image","Split", "Height", "Width", "Unlabeled"]).sum(axis=1)==0)
-    unlabeled_percent = unlabeled_num / df_img.shape[0]
-    splits_list = [
-        {
-        "name": "training",
-        "split_size": 800
-        },
-        {
-        "name": "validation",
-        "split_size": 200
-        }
-    ]
-
-    return {
-        "name": "PASCAL VOC",
-        "fullname": "PASCAL Visual Object Classes Challenge",
-        "cv_tasks": ["semantic-segmentation"],
-        "modality": modality,
-        "release_year": "2012",
-        "organization": "Dong et al",
-        "organization_link": "https://arxiv.org/pdf/2012.07131v2.pdf",
-        "totals": totals_dct,
-        "unlabeled_assets_num": unlabeled_num,
-        "unlabeled_assets_percent": unlabeled_percent,
-        "splits": splits_list
-    }
-
-
-
+    return fields
 
 def generate_summary(data):
     name = data.get("name")
@@ -154,19 +120,78 @@ def generate_summary(data):
     content += (
         f"The dataset was released in {release_year} by [{organization}]({organization_link}).\n"
     )
+    content += f"\n# Expert Commentary \n\n {get_expert_commentary()}"
+
 
     return content
 
 
 if __name__ == "__main__":
+
+    kwargs = {
+        'name': "PASCAL VOC",
+        "fullname": "PASCAL Visual Object Classes Challenge",
+        "cv_tasks": ["semantic-segmentation"],
+        "release_year": "2012",
+        "organization": "Dong et al",
+        "organization_link": "https://arxiv.org/pdf/2012.07131v2.pdf",
+    }
     with open("src/metadata.json", "w") as json_file:
-        json.dump(generate_meta_from_sly(), json_file, indent=4)
-        # json_file.write(generate_meta_from_sly())
+        json.dump(generate_meta_from_sly(**kwargs), json_file, indent=4)
     
     with open("src/metadata.json") as json_file:
         data = json.load(json_file)
 
     summary_content = generate_summary(data)
 
-    with open("SUMMARY_.md", "w") as summary_file:
+    with open("SUMMARY.md", "w") as summary_file:
         summary_file.write(summary_content)
+
+
+# def generate_meta_from_local():
+
+#     modality ="images"
+
+#     with open("./stats/class_balance.json") as f:
+#         json_data = json.load(f)
+#     df = pd.DataFrame(data=json_data["data"], columns=json_data["columns"])
+
+#     with open("./stats/classes_per_image.json") as f:
+#         json_data = json.load(f)
+#     df_img = pd.DataFrame(data=json_data["data"], columns=json_data["columns"])
+
+
+#     totals_dct = {
+#        "total_modality_files": df_img.shape[0],
+#        "total_objects": df["Objects"].sum(),
+#        "total_classes": df["Class"].count(),
+#        "top_classes": df.sort_values('Objects', ascending=False)['Class'].tolist()
+#     }
+
+#     unlabeled_num = df_img.shape[0] - sum(df_img.drop(columns=["Image","Split", "Height", "Width", "Unlabeled"]).sum(axis=1)==0)
+#     unlabeled_percent = unlabeled_num / df_img.shape[0]
+#     splits_list = [
+#         {
+#         "name": "training",
+#         "split_size": 800
+#         },
+#         {
+#         "name": "validation",
+#         "split_size": 200
+#         }
+#     ]
+
+#     return {
+#         "name": "PASCAL VOC",
+#         "fullname": "PASCAL Visual Object Classes Challenge",
+#         "cv_tasks": ["semantic-segmentation"],
+#         "modality": modality,
+#         "release_year": "2012",
+#         "organization": "Dong et al",
+#         "organization_link": "https://arxiv.org/pdf/2012.07131v2.pdf",
+#         "totals": totals_dct,
+#         "unlabeled_assets_num": unlabeled_num,
+#         "unlabeled_assets_percent": unlabeled_percent,
+#         "splits": splits_list
+#     }
+

@@ -1,11 +1,11 @@
 {
-    "name": "Pascal VOC 2012",
+    "name": "PASCAL VOC",
     "fullname": "PASCAL Visual Object Classes Challenge",
     "cv_tasks": [
         "semantic-segmentation"
     ],
     "modality": "images",
-    "release_year": "2022",
+    "release_year": "2012",
     "organization": "Dong et al",
     "organization_link": "https://arxiv.org/pdf/2012.07131v2.pdf",
     "totals": {

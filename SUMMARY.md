@@ -1,4 +1,14 @@
-CPPE - 5 (Medical Personal Protective Equipment) is a new challenging dataset with the goal to allow the study of subordinate categorization of medical personal protective equipments, which is not possible with other popular data sets that focus on broad level categories.
+# PASCAL VOC dataset summary
+
+**PASCAL VOC** (PASCAL Visual Object Classes Challenge) is a dataset for semantic-segmentation tasks. It is used for general-purpose tasks. Dataset contains a total of 7282 images with 19694         labeled objects of 21 classes including top-3: *neutral, person, chair*;             and other: *car, cat, dog, bird, bottle, sofa, aeroplane, pottedplant, train, diningtable, motorbike, tvmonitor, bus, boat, horse, bicycle, cow, sheep*.
+
+Each image in PASCAL VOC dataset has pixel-level segmentation annotations. There are 1456 (20% of the total) unlabeled images (i.e. without annotations).
+There are 4 splits in the dataset: *test* (1456 images), *val* (1449 images), *train* (1464 images), *trainval* (2913 images). The dataset was released in 2012 by [Dong et al](https://arxiv.org/pdf/2012.07131v2.pdf).
+
+# Expert Commentary 
+
+ This is a very good dataset. I enjoy it every day in my life.
+
 
 ![Cooking at 3am](https://raw.githubusercontent.com/dataset-ninja/pascal-voc-2012/main/gordon-ramsay.jpg?v=1)
 
@@ -7,3 +17,4 @@ Some features of this dataset are:
 1. high quality images and annotations (~4.6 bounding boxes per image)
 1. real-life images unlike any current such dataset
 1. majority of non-iconic images (allowing easy deployment to real-world environments)
+    
