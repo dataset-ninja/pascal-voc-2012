@@ -102,6 +102,7 @@ def main():
 # authors
 # ....
 # ...
+# default image preview id
 
 # auto summary.md
 
