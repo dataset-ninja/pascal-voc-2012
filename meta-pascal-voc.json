@@ -1,0 +1,34 @@
+{
+  "name": "PASCAL VOC",
+  "fullname": "PASCAL Visual Object Classes Challenge",
+  "cv_tasks": ["semantic-segmentation"],
+  "modality": "images",
+  "release_year": "2022",
+  "organization": " Dong et al",
+  "organization_link": "https://arxiv.org/pdf/2012.07131v2.pdf",
+  "totals": {
+    "total_files": 1000,
+    "total_objects": 5000,
+    "total_classes": 10,
+    "top_classes": [
+      "Class A",
+      "Class B",
+      "Class C",
+      "Class D",
+      "Class E",
+      "Class F"
+    ]
+  },
+  "unlabeled_images": 100,
+  "unlabeled_images_percent": 10,
+  "splits": [
+    {
+      "name": "training",
+      "split_size": 800
+    },
+    {
+      "name": "validation",
+      "split_size": 200
+    }
+  ]
+}
