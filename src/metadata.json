@@ -1,0 +1,59 @@
+{
+    "name": "Pascal VOC 2012",
+    "fullname": "PASCAL Visual Object Classes Challenge",
+    "cv_tasks": [
+        "semantic-segmentation"
+    ],
+    "modality": "images",
+    "release_year": "2022",
+    "organization": "Dong et al",
+    "organization_link": "https://arxiv.org/pdf/2012.07131v2.pdf",
+    "totals": {
+        "total_assets": 7282,
+        "total_objects": 19694,
+        "total_classes": 21,
+        "top_classes": [
+            "neutral",
+            "person",
+            "chair",
+            "car",
+            "cat",
+            "dog",
+            "bird",
+            "bottle",
+            "sofa",
+            "aeroplane",
+            "pottedplant",
+            "train",
+            "diningtable",
+            "motorbike",
+            "tvmonitor",
+            "bus",
+            "boat",
+            "horse",
+            "bicycle",
+            "cow",
+            "sheep"
+        ]
+    },
+    "unlabeled_assets_num": 1456,
+    "unlabeled_assets_percent": 20,
+    "splits": [
+        {
+            "name": "test",
+            "split_size": 1456
+        },
+        {
+            "name": "val",
+            "split_size": 1449
+        },
+        {
+            "name": "train",
+            "split_size": 1464
+        },
+        {
+            "name": "trainval",
+            "split_size": 2913
+        }
+    ]
+}
