@@ -86,7 +86,7 @@ def build_summary():
     }
 
     summary_data = dtools.get_summary_data(**info)
-    summary_content = dtools.generate_summary_content(summary_data)
+    summary_content = dtools.generate_summary_content(summary_data, gif_path = "path/to.gif")
 
     with open("SUMMARY.md", "w") as summary_file:
         summary_file.write(summary_content)
