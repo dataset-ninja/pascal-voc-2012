@@ -86,11 +86,28 @@ def build_visualizations():
         a.animate(f"./visualizations/{a.basename_stem}.webp")
     print("Visualizations done")
 
+def build_summary():
+
+    info = {
+        'name': "PASCAL VOC",
+        "fullname": "PASCAL Visual Object Classes Challenge",
+        "cv_tasks": ["semantic segmentation"],
+        "release_year": "2012",
+        "organization": "University of Oxford",
+        "organization_link": "http://host.robots.ox.ac.uk/pascal/VOC/",
+    }
+
+    summary_data = dtools.get_summary_data(**info)
+    summary_content = dtools.generate_summary_content(summary_data, gif_path = "path/to.gif")
+
+    with open("SUMMARY.md", "w") as summary_file:
+        summary_file.write(summary_content)
 
 def main():
     pass
     # build_stats()
     # build_visualizations()
+    build_summary()
 
 
 # @TODO: dataset-ninja/pascal-voc-2012 github repo in custom data
