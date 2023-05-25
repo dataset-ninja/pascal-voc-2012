@@ -19,6 +19,18 @@ project_id = sly.env.project_id()
 project_meta = sly.ProjectMeta.from_json(api.project.get_meta(project_id))
 datasets = api.dataset.get_list(project_id)
 
+
+# upload dataset info
+project_info = api.project.get_info_by_id(project_id)
+if len(project_info.custom_data):
+    info = {
+        "name": "Pascal VOC 2012",
+        "full name": "",
+        ""
+        
+    }
+    api.project.update_custom_data(info)
+
 # 2. localdir way
 # project_path = os.environ["LOCAL_DATA_DIR"]
 # sly.download(api, project_id, project_path, save_image_info=True, save_images=False)
@@ -64,7 +76,7 @@ def build_visualizations():
     ]
     dtools.prepare_renders(
         project_id,
-        renderers=renderers+animators,
+        renderers=renderers + animators,
         sample_cnt=40,
     )
     print("Saving visualization results...")
@@ -86,7 +98,12 @@ def main():
 # licence
 # tags
 # industies
+# year
+# authors
+# ....
 # ...
+
+# auto summary.md
 
 
 if __name__ == "__main__":
