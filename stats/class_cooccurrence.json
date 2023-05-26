@@ -4944,7 +4944,7 @@
   },
   "options": {
     "fixColumns": 1,
-    "cellTooltip": "Click to preview images. {currentCell} images have objects of both classes {firstCell} and {currentColumn} at the same time."
+    "cellTooltip": "Click to preview. {currentCell} images have objects of both classes {firstCell} and {currentColumn} at the same time."
   },
   "colomnsOptions": [
     { "type": "class" },
