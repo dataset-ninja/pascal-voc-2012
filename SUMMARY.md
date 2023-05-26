@@ -11,15 +11,4 @@ There are 4 splits in the dataset: *test* (1456 images), *val* (1449 images), *t
 Here are the visualized examples for each of the 21 classes:
 
 **![Dataset classes](https://raw.githubusercontent.com/dataset-ninja/pascal-voc-2012/main/visualizations/classes_preview.webp)**
-## Expert Commentary 
 
- This is a very good dataset. I enjoy it every day of my life.
-
-
-![Cooking at 3am](https://raw.githubusercontent.com/dataset-ninja/pascal-voc-2012/main/gordon-ramsay.jpg?v=1)
-
-Some features of this dataset are:
-
-1. high quality images and annotations (~4.6 bounding boxes per image)
-1. real-life images unlike any current such dataset
-1. majority of non-iconic images (allowing easy deployment to real-world environments)
