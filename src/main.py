@@ -40,7 +40,9 @@ if len(project_info.custom_data):
     api.project.update_custom_data(project_id, info)
 
 # 3. get download link
-dtools.prepare_download_link(project_id)
+
+download_link = dtools.prepare_download_link(project_info)
+# dtools.update_links_dict({project_id: download_link})
 
 
 def build_stats():
