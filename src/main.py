@@ -42,7 +42,7 @@ if len(project_info.custom_data):
 # 3. get download link
 
 download_link = dtools.prepare_download_link(project_info)
-# dtools.update_links_dict({project_id: download_link})
+dtools.update_links_dict({project_id: download_link})
 
 
 def build_stats():
@@ -109,7 +109,7 @@ def main():
     pass
     # build_stats()
     # build_visualizations()
-    build_summary()
+    # build_summary()
 
 
 # @TODO: dataset-ninja/pascal-voc-2012 github repo in custom data
