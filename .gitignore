@@ -4,3 +4,4 @@ __pycache__
 dataset_tools/
 dataset_tools
 supervisely
+debug_data/
