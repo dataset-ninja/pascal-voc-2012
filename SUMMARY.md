@@ -1,5 +1,3 @@
-# PASCAL VOC dataset summary
-
 **PASCAL VOC** (PASCAL Visual Object Classes Challenge) is a dataset for semantic segmentation tasks. It is applicable or relevant across various domains.
 The dataset consists of 7282 images with 19694
 labeled objects belonging to 21 different classes
@@ -13,7 +11,7 @@ There are 4 splits in the dataset: *test* (1456 images), *val* (1449 images), *t
 Here are the visualized examples for each of the 21 classes:
 
 **![Dataset classes](https://raw.githubusercontent.com/dataset-ninja/pascal-voc-2012/main/visualizations/classes_preview.webp)**
-# Expert Commentary 
+## Expert Commentary 
 
  This is a very good dataset. I enjoy it every day of my life.
 
