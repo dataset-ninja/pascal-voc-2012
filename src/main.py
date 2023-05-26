@@ -14,28 +14,30 @@ os.makedirs("./stats/", exist_ok=True)
 os.makedirs("./visualizations/", exist_ok=True)
 api = sly.Api.from_env()
 
-# 1. api way
+# 1a initialize sly api way
 project_id = sly.env.project_id()
 project_meta = sly.ProjectMeta.from_json(api.project.get_meta(project_id))
 datasets = api.dataset.get_list(project_id)
 
 
-# upload dataset info
-project_info = api.project.get_info_by_id(project_id)
-if len(project_info.custom_data):
-    info = {
-        "name": "Pascal VOC 2012",
-        "full name": "",
-        ""
-        
-    }
-    api.project.update_custom_data(info)
-
-# 2. localdir way
+# 1b initialize sly localdir way
 # project_path = os.environ["LOCAL_DATA_DIR"]
 # sly.download(api, project_id, project_path, save_image_info=True, save_images=False)
 # project_meta = sly.Project(project_path, sly.OpenMode.READ).meta
 # datasets = None
+
+# 2. upload dataset info
+project_info = api.project.get_info_by_id(project_id)
+# if not len(project_info.custom_data):
+info = {
+    "name": "PASCAL VOC",
+    "fullname": "PASCAL Visual Object Classes Challenge",
+    "cv_tasks": ["semantic segmentation"],
+    "release_year": "2012",
+    "organization": "University of Oxford",
+    "organization_link": "http://host.robots.ox.ac.uk/pascal/VOC/",
+}
+api.project.update_custom_data(project_id, info)
 
 
 def build_stats():
@@ -86,22 +88,17 @@ def build_visualizations():
         a.animate(f"./visualizations/{a.basename_stem}.webp")
     print("Visualizations done")
 
+
 def build_summary():
-
-    info = {
-        'name': "PASCAL VOC",
-        "fullname": "PASCAL Visual Object Classes Challenge",
-        "cv_tasks": ["semantic segmentation"],
-        "release_year": "2012",
-        "organization": "University of Oxford",
-        "organization_link": "http://host.robots.ox.ac.uk/pascal/VOC/",
-    }
-
-    summary_data = dtools.get_summary_data(**info)
-    summary_content = dtools.generate_summary_content(summary_data, gif_path = "dataset-ninja/pascal-voc-2012/blob/main/visualizations/horizontal_grid.webp")
+    summary_data = dtools.get_summary_data_sly(project_info)
+    summary_content = dtools.generate_summary_content(
+        summary_data,
+        gif_path="dataset-ninja/pascal-voc-2012/main/visualizations/classes_preview.webp",
+    )
 
     with open("SUMMARY.md", "w") as summary_file:
         summary_file.write(summary_content)
+
 
 def main():
     pass
