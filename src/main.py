@@ -26,18 +26,18 @@ datasets = api.dataset.get_list(project_id)
 # project_meta = sly.Project(project_path, sly.OpenMode.READ).meta
 # datasets = None
 
-# 2. upload dataset info
+# 2. upload dataset custom data
 project_info = api.project.get_info_by_id(project_id)
-# if not len(project_info.custom_data):
-info = {
-    "name": "PASCAL VOC",
-    "fullname": "PASCAL Visual Object Classes Challenge",
-    "cv_tasks": ["semantic segmentation"],
-    "release_year": "2012",
-    "organization": "University of Oxford",
-    "organization_link": "http://host.robots.ox.ac.uk/pascal/VOC/",
-}
-api.project.update_custom_data(project_id, info)
+if len(project_info.custom_data):
+    info = {
+        "name": "PASCAL VOC",
+        "fullname": "PASCAL Visual Object Classes Challenge",
+        "cv_tasks": ["semantic segmentation"],
+        "release_year": "2012",
+        "organization": "University of Oxford",
+        "organization_link": "http://host.robots.ox.ac.uk/pascal/VOC/",
+    }
+    api.project.update_custom_data(project_id, info)
 
 
 def build_stats():
