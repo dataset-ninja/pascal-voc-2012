@@ -11,3 +11,4 @@ There are 4 splits in the dataset: *test* (1456 images), *val* (1449 images), *t
 Here are the visualized examples for each of the 21 classes:
 
 **![Dataset classes](https://raw.githubusercontent.com/dataset-ninja/pascal-voc-2012/main/visualizations/classes_preview.webp)**
+
