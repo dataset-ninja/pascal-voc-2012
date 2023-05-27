@@ -109,6 +109,9 @@ def build_visualizations():
 
 def build_summary():
     summary_data = dtools.get_summary_data_sly(project_info)
+
+    # if sly.file_exists("./visualizations/classes_preview.webm"):
+    #     giturl="{github_url}/raw/main/visualizations/classes_preview.webm"
     summary_content = dtools.generate_summary_content(
         summary_data,
         gif_url="https://github.com/dataset-ninja/pascal-voc-2012/raw/main/visualizations/classes_preview.webm",
