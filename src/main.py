@@ -40,6 +40,8 @@ if len(project_info.custom_data) == 0:
         "license_url": "http://host.robots.ox.ac.uk/pascal/VOC/",
         "paper": "http://host.robots.ox.ac.uk/pascal/VOC/pubs/everingham15.pdf",
         "preview_image_id": "49551",
+        "download_sly_url": "",
+        "download_original_url": "http://host.robots.ox.ac.uk/pascal/VOC/voc2012/index.html#devkit",
     }
     api.project.update_custom_data(project_id, info)
 
