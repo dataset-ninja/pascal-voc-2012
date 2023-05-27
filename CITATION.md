@@ -1,5 +1,3 @@
-# Citation
-
 ```
 @Article{Everingham15,
    author = "Everingham, M. and Eslami, S. M. A. and Van~Gool, L. and Williams, C. K. I. and Winn, J. and Zisserman, A.",
