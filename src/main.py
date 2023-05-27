@@ -48,6 +48,7 @@ if len(custom_data) == 0:
         # "tags": [], # optional
         "industies": ["general domain"],
         "github": "https://github.com/dataset-ninja/pascal-voc-2012",
+        "citation_url": "http://host.robots.ox.ac.uk/pascal/VOC/voc2012/index.html#citation",
     }
     api.project.update_custom_data(project_id, custom_data)
 
