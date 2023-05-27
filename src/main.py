@@ -36,15 +36,19 @@ if len(custom_data) == 0:
         "cv_tasks": ["semantic segmentation", "object detection", "instance segmentation"],
         "annotation_types": ["instance segmentation"],
         "release_year": "2012",
-        "homepage": "http://host.robots.ox.ac.uk/pascal/VOC/",
+        "homepage": "http://host.robots.ox.ac.uk/pascal/VOC/voc2012/index.html",
         "license": "custom",
-        "license_url": "http://host.robots.ox.ac.uk/pascal/VOC/",
-        "paper": "http://host.robots.ox.ac.uk/pascal/VOC/pubs/everingham15.pdf",
+        "license_url": "http://host.robots.ox.ac.uk/pascal/VOC/voc2012/index.html#rights",
+        "paper": "http://host.robots.ox.ac.uk/pascal/VOC/pubs/everingham15.pdf",  # optional
         "preview_image_id": "49551",
         "download_sly_url": "",
-        "download_original_url": "http://host.robots.ox.ac.uk/pascal/VOC/voc2012/index.html#devkit",
+        "download_original_url": "http://host.robots.ox.ac.uk/pascal/VOC/voc2012/index.html#devkit",  # optional
+        # "organization_name": None, # optional
+        # "organization_url": None, # optional
+        # "tags": [], # optional
+        "industies": ["general domain"],
     }
-    api.project.update_custom_data(project_id, info)
+    api.project.update_custom_data(project_id, custom_data)
 
 # 3. get download link
 if custom_data.get("download_sly_url") is not None:
@@ -119,15 +123,6 @@ def main():
     # build_stats()
     # build_visualizations()
     build_summary()
-
-
-# @TODO: dataset-ninja/pascal-voc-2012 github repo in custom data
-# assk -object detection
-# tags
-# industies
-# default image preview id
-
-# auto summary.md
 
 
 if __name__ == "__main__":
