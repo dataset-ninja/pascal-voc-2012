@@ -32,7 +32,8 @@ if len(project_info.custom_data):
     info = {
         "name": "PASCAL VOC",
         "fullname": "PASCAL Visual Object Classes Challenge",
-        "cv_tasks": ["semantic segmentation"],
+        "cv_tasks": ["semantic segmentation", "object detection", "instance segmentation"],
+        "annotation_types": ["instance segmentation"],
         "release_year": "2012",
         "organization": "University of Oxford",
         "organization_link": "http://host.robots.ox.ac.uk/pascal/VOC/",
@@ -41,8 +42,8 @@ if len(project_info.custom_data):
 
 # 3. get download link
 
-download_link = dtools.prepare_download_link(project_info)
-dtools.update_links_dict({project_id: download_link})
+# download_link = dtools.prepare_download_link(project_info)
+# dtools.update_links_dict({project_id: download_link})
 
 
 def build_stats():
@@ -98,7 +99,7 @@ def build_summary():
     summary_data = dtools.get_summary_data_sly(project_info)
     summary_content = dtools.generate_summary_content(
         summary_data,
-        gif_path="dataset-ninja/pascal-voc-2012/main/visualizations/classes_preview.webp",
+        gif_url="https://github.com/dataset-ninja/pascal-voc-2012/raw/main/visualizations/classes_preview.webm",
     )
 
     with open("SUMMARY.md", "w") as summary_file:
@@ -109,7 +110,7 @@ def main():
     pass
     # build_stats()
     # build_visualizations()
-    # build_summary()
+    build_summary()
 
 
 # @TODO: dataset-ninja/pascal-voc-2012 github repo in custom data
