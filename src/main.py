@@ -40,13 +40,14 @@ if len(custom_data) == 0:
         "license": "custom",
         "license_url": "http://host.robots.ox.ac.uk/pascal/VOC/voc2012/index.html#rights",
         "paper": "http://host.robots.ox.ac.uk/pascal/VOC/pubs/everingham15.pdf",  # optional
-        "preview_image_id": "49551",
+        "preview_image_id": 49551,
         "download_sly_url": "",
         "download_original_url": "http://host.robots.ox.ac.uk/pascal/VOC/voc2012/index.html#devkit",  # optional
         # "organization_name": None, # optional
         # "organization_url": None, # optional
         # "tags": [], # optional
         "industies": ["general domain"],
+        "github": "https://github.com/dataset-ninja/pascal-voc-2012",
     }
     api.project.update_custom_data(project_id, custom_data)
 
