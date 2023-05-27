@@ -28,15 +28,18 @@ datasets = api.dataset.get_list(project_id)
 
 # 2. upload dataset custom data
 project_info = api.project.get_info_by_id(project_id)
-if len(project_info.custom_data):
+if len(project_info.custom_data) == 0:
     info = {
-        "name": "PASCAL VOC",
+        "name": "PASCAL VOC 2012",
         "fullname": "PASCAL Visual Object Classes Challenge",
         "cv_tasks": ["semantic segmentation", "object detection", "instance segmentation"],
         "annotation_types": ["instance segmentation"],
         "release_year": "2012",
-        "organization": "University of Oxford",
-        "organization_link": "http://host.robots.ox.ac.uk/pascal/VOC/",
+        "homepage": "http://host.robots.ox.ac.uk/pascal/VOC/",
+        "license": "custom",
+        "license_url": "http://host.robots.ox.ac.uk/pascal/VOC/",
+        "paper": "http://host.robots.ox.ac.uk/pascal/VOC/pubs/everingham15.pdf",
+        "preview_image_id": "49551",
     }
     api.project.update_custom_data(project_id, info)
 
@@ -115,13 +118,8 @@ def main():
 
 # @TODO: dataset-ninja/pascal-voc-2012 github repo in custom data
 # assk -object detection
-# licence
 # tags
 # industies
-# year
-# authors
-# ....
-# ...
 # default image preview id
 
 # auto summary.md
