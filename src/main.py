@@ -57,7 +57,7 @@ if len(custom_data) > 0:
         # optional fields
         "download_original_url": "http://host.robots.ox.ac.uk/pascal/VOC/voc2012/index.html#devkit",  
         "paper": "http://host.robots.ox.ac.uk/pascal/VOC/pubs/everingham15.pdf",
-        # "organization_name": 'ORG', 
+        # "organization_name": None, 
         # "organization_url": None,
         # "tags": [],
     }
