@@ -69,24 +69,29 @@ if len(custom_data) > 0:
 def build_stats():
     stats = [
         dtools.ClassBalance(project_meta),
-        dtools.ClassCooccurrence(project_meta, force=True),
+        dtools.ClassCooccurrence(project_meta, force=False),
         dtools.ClassesPerImage(project_meta, datasets),
         dtools.ObjectsDistribution(project_meta),
         dtools.ObjectSizes(project_meta),
         dtools.ClassSizes(project_meta),
     ]
+    heatmaps = dtools.ClassesHeatmaps(project_meta)
+    classes_previews = dtools.ClassesPreview(project_meta, project_info.name, force=False)
+    
     for stat in stats:
         if not sly.fs.file_exists(f"./stats/{stat.basename_stem}.json"):
             stat.force = True
     stats = [stat for stat in stats if stat.force]
-
-    # heatmaps = dtools.ClassesHeatmaps(project_meta)
-    # classes_previews = dtools.ClassesPreview(project_meta, project_info.name)
-    # vstats = [heatmaps, classes_previews]
+    
+    if not sly.fs.file_exists(f"./stats/{heatmaps.basename_stem}.png"):
+        heatmaps.force = True
+    if not sly.fs.file_exists(f"./visualizations/{classes_previews.basename_stem}.webm"):
+        classes_previews.force = True
+    vstats = [stat for stat in [heatmaps, classes_previews] if stat.force]
 
     dtools.count_stats(
         project_id,
-        stats=stats,
+        stats=stats+vstats,
         sample_rate=1,
     )
 
@@ -95,33 +100,48 @@ def build_stats():
         with open(f"./stats/{stat.basename_stem}.json", "w") as f:
             json.dump(stat.to_json(), f)
         stat.to_image(f"./stats/{stat.basename_stem}.png")
-    # heatmaps.to_image(f"./stats/{heatmaps.basename_stem}.png", draw_style="outside_black")
-    # classes_previews.animate(f"./visualizations/{classes_previews.basename_stem}.webm")
+
+    if len(vstats) > 0:
+        if heatmaps.force: 
+            heatmaps.to_image(f"./stats/{heatmaps.basename_stem}.png", draw_style="outside_black")
+        if classes_previews.force:
+            classes_previews.animate(f"./visualizations/{classes_previews.basename_stem}.webm")
 
     print("Stats done")
 
 
 def build_visualizations():
     renderers = [
-        dtools.Poster(project_id, project_meta),
+        dtools.Poster(project_id, project_meta, force=False),
         dtools.SideAnnotationsGrid(project_id, project_meta),
     ]
     animators = [
         dtools.HorizontalGrid(project_id, project_meta),
-        dtools.VerticalGrid(project_id, project_meta),
+        dtools.VerticalGrid(project_id, project_meta, force=False),
     ]
+
+    for vis in renderers + animators:
+        if not sly.fs.file_exists(f"./visualizations/{vis.basename_stem}.png"):
+            vis.force = True
+    renderers, animators = [r for r in renderers if r.force], [a for a in animators if a.force]
+
+    for a in animators:
+        if not sly.fs.file_exists(f"./visualizations/{a.basename_stem}.webm"):
+            a.force = True
+    animators = [a for a in animators if a.force]
+
+    # Download fonts from https://fonts.google.com/specimen/Fira+Sans
     dtools.prepare_renders(
         project_id,
         renderers=renderers + animators,
         sample_cnt=40,
     )
     print("Saving visualization results...")
-    for r in renderers + animators:
-        r.to_image(f"./visualizations/{r.basename_stem}.png")
+    for vis in renderers + animators:
+        vis.to_image(f"./visualizations/{vis.basename_stem}.png")
     for a in animators:
         a.animate(f"./visualizations/{a.basename_stem}.webm")
     print("Visualizations done")
-
 
 def build_summary():
     print('Building summary...')
@@ -142,8 +162,8 @@ def build_summary():
 def main():
     pass
     # build_stats()
-    # build_visualizations()
-    build_summary()
+    build_visualizations()
+    # build_summary()
 
 
 if __name__ == "__main__":
