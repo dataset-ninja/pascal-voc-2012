@@ -26,38 +26,44 @@ datasets = api.dataset.get_list(project_id)
 # project_meta = sly.Project(project_path, sly.OpenMode.READ).meta
 # datasets = None
 
-# 2. upload dataset custom data
+
 project_info = api.project.get_info_by_id(project_id)
 custom_data = project_info.custom_data
-if len(custom_data) == 0:
+
+# 2. get download link
+if custom_data.get("download_sly_url") is not None:
+    download_sly_url = dtools.prepare_download_link(project_info)
+    dtools.update_sly_url_dict({project_id: download_sly_url})
+
+# 3. upload custom data
+if len(custom_data) > 0:
+    # preset fields
     custom_data = {
+        # required fields
         "name": "PASCAL VOC 2012",
         "fullname": "PASCAL Visual Object Classes Challenge",
         "cv_tasks": ["semantic segmentation", "object detection", "instance segmentation"],
         "annotation_types": ["instance segmentation"],
-        "release_year": "2012",
-        "homepage": "http://host.robots.ox.ac.uk/pascal/VOC/voc2012/index.html",
+        "industries": ["general domain"],
+        "release_year": 2012,
+        "homepage_url": "http://host.robots.ox.ac.uk/pascal/VOC/voc2012/index.html",
         "license": "custom",
         "license_url": "http://host.robots.ox.ac.uk/pascal/VOC/voc2012/index.html#rights",
-        "paper": "http://host.robots.ox.ac.uk/pascal/VOC/pubs/everingham15.pdf",  # optional
         "preview_image_id": 49551,
-        "download_sly_url": "",
-        "download_original_url": "http://host.robots.ox.ac.uk/pascal/VOC/voc2012/index.html#devkit",  # optional
-        # "organization_name": None, # optional
-        # "organization_url": None, # optional
-        # "tags": [], # optional
-        "industies": ["general domain"],
-        "github": "https://github.com/dataset-ninja/pascal-voc-2012",
+        "github_url": "https://github.com/dataset-ninja/pascal-voc-2012",
         "citation_url": "http://host.robots.ox.ac.uk/pascal/VOC/voc2012/index.html#citation",
+        "download_sly_url": download_sly_url,
+
+        # optional fields
+        "download_original_url": "http://host.robots.ox.ac.uk/pascal/VOC/voc2012/index.html#devkit",  
+        "paper": "http://host.robots.ox.ac.uk/pascal/VOC/pubs/everingham15.pdf",
+        # "organization_name": 'ORG', 
+        # "organization_url": None,
+        # "tags": [],
     }
     api.project.update_custom_data(project_id, custom_data)
 
-# 3. get download link
-if custom_data.get("download_sly_url") is not None:
-    download_link = dtools.prepare_download_link(project_info)
-    dtools.update_links_dict({project_id: download_link})
-    custom_data["download_sly_url"] = download_link
-    api.project.update_custom_data(project_id, custom_data)
+
 
 
 def build_stats():
@@ -113,18 +119,20 @@ def build_visualizations():
 
 
 def build_summary():
+    print('Building summary...')
     summary_data = dtools.get_summary_data_sly(project_info)
 
-    # if sly.file_exists("./visualizations/classes_preview.webm"):
-    #     giturl="{github_url}/raw/main/visualizations/classes_preview.webm"
+    if sly.fs.file_exists("./visualizations/classes_preview.webm"):
+        classes_preview=f"{custom_data['github_url']}/raw/main/visualizations/classes_preview.webm"
+
     summary_content = dtools.generate_summary_content(
         summary_data,
-        gif_url="https://github.com/dataset-ninja/pascal-voc-2012/raw/main/visualizations/classes_preview.webm",
+        vis_url=classes_preview,
     )
 
     with open("SUMMARY.md", "w") as summary_file:
         summary_file.write(summary_content)
-
+    print('Done.')
 
 def main():
     pass
