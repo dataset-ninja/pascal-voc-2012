@@ -31,9 +31,9 @@ project_info = api.project.get_info_by_id(project_id)
 custom_data = project_info.custom_data
 
 # 2. get download link
-if custom_data.get("download_sly_url") is not None:
-    download_sly_url = dtools.prepare_download_link(project_info)
-    dtools.update_sly_url_dict({project_id: download_sly_url})
+download_sly_url = dtools.prepare_download_link(project_info)
+dtools.update_sly_url_dict({project_id: download_sly_url})
+
 
 # 3. upload custom data
 if len(custom_data) > 0:
@@ -69,19 +69,24 @@ if len(custom_data) > 0:
 def build_stats():
     stats = [
         dtools.ClassBalance(project_meta),
-        dtools.ClassCooccurrence(project_meta),
+        dtools.ClassCooccurrence(project_meta, force=True),
         dtools.ClassesPerImage(project_meta, datasets),
         dtools.ObjectsDistribution(project_meta),
         dtools.ObjectSizes(project_meta),
         dtools.ClassSizes(project_meta),
     ]
-    heatmaps = dtools.ClassesHeatmaps(project_meta)
-    classes_previews = dtools.ClassesPreview(project_meta, project_info.name)
-    vstats = [heatmaps, classes_previews]
+    for stat in stats:
+        if not sly.fs.file_exists(f"./stats/{stat.basename_stem}.json"):
+            stat.force = True
+    stats = [stat for stat in stats if stat.force]
+
+    # heatmaps = dtools.ClassesHeatmaps(project_meta)
+    # classes_previews = dtools.ClassesPreview(project_meta, project_info.name)
+    # vstats = [heatmaps, classes_previews]
 
     dtools.count_stats(
         project_id,
-        stats=stats + vstats,
+        stats=stats,
         sample_rate=1,
     )
 
@@ -90,8 +95,8 @@ def build_stats():
         with open(f"./stats/{stat.basename_stem}.json", "w") as f:
             json.dump(stat.to_json(), f)
         stat.to_image(f"./stats/{stat.basename_stem}.png")
-    heatmaps.to_image(f"./stats/{heatmaps.basename_stem}.png", draw_style="outside_black")
-    classes_previews.animate(f"./visualizations/{classes_previews.basename_stem}.webm")
+    # heatmaps.to_image(f"./stats/{heatmaps.basename_stem}.png", draw_style="outside_black")
+    # classes_previews.animate(f"./visualizations/{classes_previews.basename_stem}.webm")
 
     print("Stats done")
 
