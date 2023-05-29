@@ -69,10 +69,13 @@ def build_stats():
         dtools.ObjectSizes(project_meta),
         dtools.ClassSizes(project_meta),
     ]
-    vstats = [dtools.ClassesHeatmaps(project_meta)]
+    heatmaps = dtools.ClassesHeatmaps(project_meta)
+    classes_previews = dtools.ClassesPreview(project_meta, project_info.name)
+    vstats = [heatmaps, classes_previews]
+
     dtools.count_stats(
         project_id,
-        stats=stats,
+        stats=stats + vstats,
         sample_rate=1,
     )
 
@@ -81,8 +84,8 @@ def build_stats():
         with open(f"./stats/{stat.basename_stem}.json", "w") as f:
             json.dump(stat.to_json(), f)
         stat.to_image(f"./stats/{stat.basename_stem}.png")
-    for vis in vstats:
-        vis.to_image(f"./stats/{vis.basename_stem}.png", draw_style="outside_black")
+    heatmaps.to_image(f"./stats/{heatmaps.basename_stem}.png", draw_style="outside_black")
+    classes_previews.animate(f"./visualizations/{classes_previews.basename_stem}.webm")
 
     print("Stats done")
 
@@ -105,7 +108,7 @@ def build_visualizations():
     for r in renderers + animators:
         r.to_image(f"./visualizations/{r.basename_stem}.png")
     for a in animators:
-        a.animate(f"./visualizations/{a.basename_stem}.webp")
+        a.animate(f"./visualizations/{a.basename_stem}.webm")
     print("Visualizations done")
 
 
