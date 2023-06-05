@@ -1,10 +1,10 @@
 import json
 import os
 
-import supervisely as sly
 from dotenv import load_dotenv
 
 import dataset_tools as dtools
+import supervisely as sly
 
 if sly.is_development():
     load_dotenv(os.path.expanduser("~/ninja.env"))
@@ -53,17 +53,14 @@ if len(custom_data) > 0:
         "github_url": "https://github.com/dataset-ninja/pascal-voc-2012",
         "citation_url": "http://host.robots.ox.ac.uk/pascal/VOC/voc2012/index.html#citation",
         "download_sly_url": download_sly_url,
-
         # optional fields
-        "download_original_url": "http://host.robots.ox.ac.uk/pascal/VOC/voc2012/index.html#devkit",  
+        "download_original_url": "http://host.robots.ox.ac.uk/pascal/VOC/voc2012/index.html#devkit",
         "paper": "http://host.robots.ox.ac.uk/pascal/VOC/pubs/everingham15.pdf",
-        # "organization_name": None, 
+        # "organization_name": None,
         # "organization_url": None,
         # "tags": [],
     }
     api.project.update_custom_data(project_id, custom_data)
-
-
 
 
 def build_stats():
@@ -77,12 +74,12 @@ def build_stats():
     ]
     heatmaps = dtools.ClassesHeatmaps(project_meta)
     classes_previews = dtools.ClassesPreview(project_meta, project_info.name, force=False)
-    
+
     for stat in stats:
         if not sly.fs.file_exists(f"./stats/{stat.basename_stem}.json"):
             stat.force = True
     stats = [stat for stat in stats if stat.force]
-    
+
     if not sly.fs.file_exists(f"./stats/{heatmaps.basename_stem}.png"):
         heatmaps.force = True
     if not sly.fs.file_exists(f"./visualizations/{classes_previews.basename_stem}.webm"):
@@ -91,7 +88,7 @@ def build_stats():
 
     dtools.count_stats(
         project_id,
-        stats=stats+vstats,
+        stats=stats + vstats,
         sample_rate=1,
     )
 
@@ -102,7 +99,7 @@ def build_stats():
         stat.to_image(f"./stats/{stat.basename_stem}.png")
 
     if len(vstats) > 0:
-        if heatmaps.force: 
+        if heatmaps.force:
             heatmaps.to_image(f"./stats/{heatmaps.basename_stem}.png", draw_style="outside_black")
         if classes_previews.force:
             classes_previews.animate(f"./visualizations/{classes_previews.basename_stem}.webm")
@@ -143,12 +140,15 @@ def build_visualizations():
         a.animate(f"./visualizations/{a.basename_stem}.webm")
     print("Visualizations done")
 
+
 def build_summary():
-    print('Building summary...')
+    print("Building summary...")
     summary_data = dtools.get_summary_data_sly(project_info)
 
     if sly.fs.file_exists("./visualizations/classes_preview.webm"):
-        classes_preview=f"{custom_data['github_url']}/raw/main/visualizations/classes_preview.webm"
+        classes_preview = (
+            f"{custom_data['github_url']}/raw/main/visualizations/classes_preview.webm"
+        )
 
     summary_content = dtools.generate_summary_content(
         summary_data,
@@ -157,13 +157,14 @@ def build_summary():
 
     with open("SUMMARY.md", "w") as summary_file:
         summary_file.write(summary_content)
-    print('Done.')
+    print("Done.")
+
 
 def main():
     pass
     # build_stats()
-    build_visualizations()
-    # build_summary()
+    # build_visualizations()
+    build_summary()
 
 
 if __name__ == "__main__":

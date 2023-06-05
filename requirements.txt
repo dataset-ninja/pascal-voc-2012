@@ -1,3 +1,2 @@
 supervisely==6.72.19
-dataset-tools==0.0.8
-inflect
+dataset-tools==0.0.9
