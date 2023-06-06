@@ -13,6 +13,8 @@ if sly.is_development():
 os.makedirs("./stats/", exist_ok=True)
 os.makedirs("./visualizations/", exist_ok=True)
 api = sly.Api.from_env()
+team_id = sly.env.team_id()
+
 
 # 1a initialize sly api way
 project_id = sly.env.project_id()
@@ -50,6 +52,7 @@ if len(custom_data) > 0:
         "license": "custom",
         "license_url": "http://host.robots.ox.ac.uk/pascal/VOC/voc2012/index.html#rights",
         "preview_image_id": 49551,
+        "github": "dataset-ninja/pascal-voc-2012",
         "github_url": "https://github.com/dataset-ninja/pascal-voc-2012",
         "citation_url": "http://host.robots.ox.ac.uk/pascal/VOC/voc2012/index.html#citation",
         "download_sly_url": download_sly_url,
@@ -74,6 +77,7 @@ def build_stats():
     ]
     heatmaps = dtools.ClassesHeatmaps(project_meta)
     classes_previews = dtools.ClassesPreview(project_meta, project_info.name, force=False)
+    previews = dtools.Previews(project_id, project_meta, api, team_id)
 
     for stat in stats:
         if not sly.fs.file_exists(f"./stats/{stat.basename_stem}.json"):
@@ -84,7 +88,9 @@ def build_stats():
         heatmaps.force = True
     if not sly.fs.file_exists(f"./visualizations/{classes_previews.basename_stem}.webm"):
         classes_previews.force = True
-    vstats = [stat for stat in [heatmaps, classes_previews] if stat.force]
+    if not api.file.dir_exists(team_id, f"/dataset/{project_id}/renders/"):
+        previews.force = True
+    vstats = [stat for stat in [heatmaps, classes_previews, previews] if stat.force]
 
     dtools.count_stats(
         project_id,
@@ -103,6 +109,8 @@ def build_stats():
             heatmaps.to_image(f"./stats/{heatmaps.basename_stem}.png", draw_style="outside_black")
         if classes_previews.force:
             classes_previews.animate(f"./visualizations/{classes_previews.basename_stem}.webm")
+        if previews.force:
+            previews.close()
 
     print("Stats done")
 
@@ -162,8 +170,8 @@ def build_summary():
 
 def main():
     pass
-    # build_stats()
-    # build_visualizations()
+    build_stats()
+    build_visualizations()
     build_summary()
 
 
