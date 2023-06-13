@@ -6,4 +6,4 @@ For the purposes of the challenge, the identity of the images in the database, e
 
 > **⚠️ Warning** The license for annotations is not clearly defined by the authors of the dataset.
 
-[🔗 Source](http://host.robots.ox.ac.uk/pascal/VOC/voc2012/index.html#rights).
+[🔗 Source](http://host.robots.ox.ac.uk/pascal/VOC/voc2012/index.html#rights)
