@@ -10,6 +10,7 @@ def convert_and_upload_supervisely_project(
 
     # Function should read local dataset and upload it to Supervisely project, then return project info.
 
-    raise NotImplementedError("The converter should be implemented manually.")
+    # raise NotImplementedError("The converter should be implemented manually.")
+    pass
 
     # * return project
