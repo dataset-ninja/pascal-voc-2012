@@ -7,6 +7,7 @@ import supervisely as sly
 from dataset_tools import ProjectRepo
 from dotenv import load_dotenv
 
+import src.options as o
 import src.settings as s
 from src.convert import convert_and_upload_supervisely_project
 
@@ -25,8 +26,8 @@ def get_project_info(api: sly.Api):
     project_info = api.project.get_info_by_name(WORKSPACE_ID, s.PROJECT_NAME)
     if not project_info:
         # If project doesn't found on instance, create it and use new project info.
+        sly.logger.info(f"Project {s.PROJECT_NAME} not found on instance. Creating a new one...")
         project_info = convert_and_upload_supervisely_project(api, WORKSPACE_ID, s.PROJECT_NAME)
-        sly.logger.info(f"Project {s.PROJECT_NAME} not found on instance. Created new project.")
         sly.logger.info("Now you can explore created project and choose 'preview_image_id'.")
         sys.exit(0)
     else:
@@ -56,6 +57,9 @@ if __name__ == "__main__":
     project_id = get_project_info(api).id
     settings = s.get_settings()
 
+    stat_options = o.get_stats_options()
+    vis_options = o.get_visualization_options()
+
     sly.logger.info(f"Starting to work with project id: {project_id}.")
 
     force_stats = forces.get("force_stats")
@@ -63,11 +67,9 @@ if __name__ == "__main__":
     force_texts = forces.get("force_texts")
 
     project_repo = ProjectRepo(api, project_id, settings)
-    project_repo.build_stats(force=force_stats)
-    project_repo.build_visualizations(force=force_visuals)
+    project_repo.build_stats(force=force_stats, settings=stat_options)
+    project_repo.build_visualizations(force=force_visuals, settings=vis_options)
 
-    # * Optional parameter preview_class should be passed if needed:
-    # * Literal["ClassesPreview", "HorizontalGrid", "SideAnnotationsGrid"]
-    project_repo.build_texts(force=force_texts)
+    project_repo.build_texts(force=force_texts, preview_class=o.PREVIEW_CLASS)
 
     sly.logger.info("Script finished.")
