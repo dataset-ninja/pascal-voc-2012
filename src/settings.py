@@ -23,7 +23,7 @@ LICENSE: License = License.Custom(
     url="http://host.robots.ox.ac.uk/pascal/VOC/voc2012/index.html#rights"
 )
 APPLICATIONS: List[Union[Domain, Industry, Research]] = [Domain.General()]
-CATEGORY: Category = Category.Benchmark(featured=True)
+CATEGORY: Category = Category.General(benchmark=True, featured=True)
 
 CV_TASKS: List[CVTask] = [
     CVTask.InstanceSegmentation(),
