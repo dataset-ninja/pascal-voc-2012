@@ -1,1 +1,8 @@
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur commodo, nibh nec viverra sodales, dui turpis bibendum nibh, ut lacinia risus sem eu ex. Ut ut ullamcorper enim. Sed turpis est, dapibus at elementum vitae, consequat a nibh. In id orci odio. Nulla porta quam ac tortor egestas congue. Pellentesque quam leo, fringilla vitae fermentum a, laoreet sed ante. Integer rutrum risus quis sagittis elementum.
+The main goal of this challenge is to recognize objects from a number of visual object classes in realistic scenes (i.e. not pre-segmented objects). It is fundamentally a supervised learning learning problem in that a training set of labelled images is provided. The twenty object classes that have been selected are:
+
+* **Person**: *person*
+* **Animal**: *bird*, *cat*, *cow*, *dog*, *horse*, *sheep*
+* **Vehicle**: *aeroplane*, *bicycle*, *boat*, *bus*, *car*, *motorbike*, *train*
+* **Indoor**: *bottle*, *chair*, *dining table*, *potted plant*, *sofa*, *tv/monitor*
+
+There are three main object recognition competitions: <i>classification</i>, <i>detection</i>, and <i>segmentation</i>, a competition on action classification, and a competition on large scale recognition run by ImageNet. In addition there is a <i>"taster"</i> competition on person layout.

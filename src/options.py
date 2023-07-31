@@ -49,7 +49,7 @@ PREVIEWS_IS_DETECTION_TASK: bool = IS_DETECTION_TASK
 ### * Set up visualization params for ClassesPreview class ####
 CLASSES_PREVIEW_ROW_HEIGHT: int = None
 CLASSES_PREVIEW_PADDINGS: dict = None
-CLASSES_PREVIEW_ROWS: int = None
+CLASSES_PREVIEW_ROWS: int = 4
 CLASSES_PREVIEW_GAP: int = None
 # default {"top": "10%", "bottom": "10%", "left": "10%", "right": "10%"}
 # set % or px as string values (e.i. "10%" or "10px")
@@ -64,14 +64,16 @@ HEATMAP_ROWS: int = 6
 HEATMAP_COLS: int = 4
 HEATMAP_GRID_SPACING: int = None
 HEATMAP_OUTER_GRID_SPACING: int = None
-HEATMAP_OUTPUT_WIDTH: int = None # 1 class in dataset? -> 1600px for portrait images, 2200px for landscape
+HEATMAP_OUTPUT_WIDTH: int = (
+    None  # 1 class in dataset? -> 1600px for portrait images, 2200px for landscape
+)
 ###############################################################
-
 
 
 ##################################
 ###### ? Do not edit bellow #####
 ##################################
+
 
 def get_visualization_options():
     vis_settings = {
@@ -93,7 +95,7 @@ def get_visualization_options():
             "rows": SIDE_ANNOTATIONS_GRID_ROWS,
             "cols": SIDE_ANNOTATIONS_GRID_COLS,
             "is_detection_task": SIDE_ANNOTATIONS_GRID_IS_DETECTION_TASK,
-        }
+        },
     }
 
     checked_vis_settings = {}
