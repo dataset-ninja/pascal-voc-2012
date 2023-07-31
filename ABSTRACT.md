@@ -5,4 +5,4 @@ The main goal of this challenge is to recognize objects from a number of visual 
 * **Vehicle**: *aeroplane*, *bicycle*, *boat*, *bus*, *car*, *motorbike*, *train*
 * **Indoor**: *bottle*, *chair*, *dining table*, *potted plant*, *sofa*, *tv/monitor*
 
-There are three main object recognition competitions: <i>classification</i>, <i>detection</i>, and <i>segmentation</i>, a competition on action classification, and a competition on large scale recognition run by ImageNet. In addition there is a <i>"taster"</i> competition on person layout.
+There are three main object recognition competitions: <i>classification</i>, <i>detection</i>, and <i>segmentation</i>, a competition on <i>action classification</i>, and a competition on <i>large scale recognition</i> run by ImageNet. In addition there is a <i>"taster"</i> competition on person layout.
