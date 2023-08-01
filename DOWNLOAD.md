@@ -1,4 +1,4 @@
-Dataset **PASCAL VOC 2012** can be downloaded in Supervisely format:
+Dataset **PASCAL VOC 2012** can be downloaded in [Supervisely format](https://developer.supervisely.com/api-references/supervisely-annotation-json-format):
 
  [Download](https://assets.supervisely.com/supervisely-supervisely-assets-public/teams_storage/u/b/Jr/HptPk5MskgkmFnoIWTSYoJqiAXuLClnUIT1Ae5Dy03cpVfQQHXXspNvYucpKFDxXIfXSPzd3T40yDbcGnMkeuC15wSLqzKBVSsf8LfVugx6aVhlkQAurOVVmLof5.tar)
 
@@ -13,6 +13,8 @@ import dataset_tools as dtools
 
 dtools.download(dataset='PASCAL VOC 2012', dst_dir='~/dataset-ninja/')
 ```
+Make sure not to overlook the [python code example](https://developer.supervisely.com/getting-started/python-sdk-tutorials/iterate-over-a-local-project) available on the Supervisely Developer Portal. It will give you a clear idea of how to effortlessly work with the downloaded dataset.
+
 The data in original format can be downloaded here:
 
 - [Training/validation data](http://host.robots.ox.ac.uk/pascal/VOC/voc2012/VOCtrainval_11-May-2012.tar)
