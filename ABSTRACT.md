@@ -1,8 +1,3 @@
-The main goal of this challenge is to recognize objects from a number of visual object classes in realistic scenes (i.e. not pre-segmented objects). It is fundamentally a supervised learning learning problem in that a training set of labelled images is provided. The twenty object classes that have been selected are:
+The **Pascal Visual Object Classes (VOC) Challenge** has been an annual event since 2006. The challenge consists of two components: (i) a publicly available dataset of images obtained from the [Flickr web site](https://www.flickr.com/), together with ground truth annotation and standardised evaluation software; and (ii) an annual competition and workshop. 
 
-* **Person**: *person*
-* **Animal**: *bird*, *cat*, *cow*, *dog*, *horse*, *sheep*
-* **Vehicle**: *aeroplane*, *bicycle*, *boat*, *bus*, *car*, *motorbike*, *train*
-* **Indoor**: *bottle*, *chair*, *dining table*, *potted plant*, *sofa*, *tv/monitor*
-
-There are three main object recognition competitions: <i>classification</i>, <i>detection</i>, and <i>segmentation</i>, a competition on <i>action classification</i>, and a competition on <i>large scale recognition</i> run by ImageNet. In addition there is a <i>"taster"</i> competition on person layout.
+There are three principal challenges: classification — "does the image contain any instances of a particular object class?" (where object classes include cars, people, dogs, etc.), detection — "where are the instances of a particular object class in the image (if any)?", and segmentation — "to which class does each pixel belong?". In addition, there are two subsidiary challenges (<i>tasters</i>): action classification — "what action is being performed by an indicated person in this image?" (where actions include jumping, phoning, riding a bike, etc.) and person layout — "where are the head, hands and feet of people in this image?". The challenges were issued with deadlines each year, and a workshop held to compare and discuss that year's results and methods.

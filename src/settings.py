@@ -14,7 +14,7 @@ from dataset_tools.templates import (
 # * Before uploading to instance #
 ##################################
 PROJECT_NAME: str = "PASCAL VOC 2012"
-PROJECT_NAME_FULL: str = "PASCAL VOC 2012: Pattern Analysis, Statistical Modelling and Computational Learning Visual Object Classes Challenge 2012"
+PROJECT_NAME_FULL: str = "PASCAL Visual Object Classes Challenge 2012"
 
 ##################################
 # * After uploading to instance ##
