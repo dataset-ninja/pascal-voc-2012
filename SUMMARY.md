@@ -1,4 +1,4 @@
-**PASCAL Visual Object Classes Challenge 2012** is a dataset for instance segmentation, object detection, and semantic segmentation tasks. It is applicable or relevant across various domains. 
+**PASCAL Visual Object Classes Challenge 2012** is a dataset for instance segmentation, semantic segmentation, and object detection tasks. It is applicable or relevant across various domains. 
 
 The dataset consists of 7282 images with 19694 labeled objects belonging to 21 different classes including *neutral*, *person*, *chair*, and other: *car*, *cat*, *dog*, *bird*, *bottle*, *sofa*, *aeroplane*, *pottedplant*, *train*, *diningtable*, *motorbike*, *tvmonitor*, *bus*, *boat*, *horse*, *bicycle*, *cow*, and *sheep*.
 
