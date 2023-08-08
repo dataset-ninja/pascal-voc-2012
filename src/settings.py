@@ -15,6 +15,7 @@ from dataset_tools.templates import (
 ##################################
 PROJECT_NAME: str = "PASCAL VOC 2012"
 PROJECT_NAME_FULL: str = "PASCAL Visual Object Classes Challenge 2012"
+HIDE_DATASET = False  # set False when 100% sure about product quality
 
 ##################################
 # * After uploading to instance ##
@@ -97,6 +98,7 @@ def get_settings():
     settings = {
         "project_name": PROJECT_NAME,
         "project_name_full": PROJECT_NAME_FULL,
+        "hide_dataset": HIDE_DATASET,
         "license": LICENSE,
         "applications": APPLICATIONS,
         "category": CATEGORY,
