@@ -1,3 +1,3 @@
-# PASCAL visual object classes challenge 2012
+# PASCAL Visual Object Classes Challenge 2012 (Segmentation Part)
 
-PASCAL VOC 2012 is a dataset for instance segmentation, object detection, semantic segmentation tasks.
+PASCAL VOC 2012 is a dataset for instance segmentation, semantic segmentation, object detection tasks.
