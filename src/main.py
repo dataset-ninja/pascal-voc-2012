@@ -19,6 +19,18 @@ SERVER_ADDRESS = os.getenv("SERVER_ADDRESS")
 TEAM_ID = sly.env.team_id()
 WORKSPACE_ID = sly.env.workspace_id()
 
+# def get_prod_credentials():
+#     LOCAL_ENV = os.path.join(PARENT_PATH, STORAGE_DIR, "prod.env")
+#     os.environ.update(dotenv_values(LOCAL_ENV))
+#     SERVER_ADDRESS = os.getenv("SERVER_ADDRESS")
+#     TEAM_ID = os.getenv("TEAM_ID")
+#     WORKSPACE_ID = os.getenv("WORKSPACE_ID")
+#     sly.logger.info(
+#         f"Connected to Prod. Supervisely. Server address: {SERVER_ADDRESS}, team_id: {TEAM_ID}, workspace_id: {WORKSPACE_ID}."
+#     )
+#     prod_api = sly.Api.from_env(env_file=LOCAL_ENV)
+#     return prod_api, TEAM_ID, WORKSPACE_ID
+
 
 def get_project_info(api: sly.Api):
     s.check_names()
