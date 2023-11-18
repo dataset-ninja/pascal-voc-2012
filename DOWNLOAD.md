@@ -1,6 +1,6 @@
 Dataset **PASCAL VOC 2012** can be downloaded in [Supervisely format](https://developer.supervisely.com/api-references/supervisely-annotation-json-format):
 
- [Download](https://assets.supervisely.com/supervisely-supervisely-assets-public/teams_storage/m/j/kM/4goa4bfl6Po3DVte1f28pgguTaG9pCizUN7r4SrNqEj4TgmUW5JIuzwR4a2IwPKL8VR6pbJJZZHEWyzUQ1DIz0xf80W5f5ZM2uU6ZxEmZSZIiS64V2WEkqiviqfZ.tar)
+ [Download](https://assets.supervisely.com/supervisely-supervisely-assets-public/teams_storage/N/U/cj/BLObACjqQ8ahBOSigTZn0r1h3PZfnzo3oO1gP9e6x2hHVlqlZjKAan51W3lxZNmrzjRts2nZgKT5vAT2NP28eYfdr5EcXHArvlCKEizaC916QjanljpHVqKcEJ3h.tar)
 
 As an alternative, it can be downloaded with *dataset-tools* package:
 ``` bash
